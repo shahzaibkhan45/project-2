@@ -77,7 +77,7 @@ header nav{
     color:white;
     transition: 0.3s;
 }
-nav-menu.active{
+.nav-menu .active{
     color: var(--first-color);
 }
 
@@ -139,6 +139,9 @@ nav-menu.active{
     display: flex;
     gap: 40px;
 }
+.imp-hero span{
+    color:gray;
+}
 
 /* hero input section */
 .hero-input{
@@ -154,6 +157,7 @@ nav-menu.active{
     font-size: 1.5rem;
 }
 .hero-input p {
+    color: gray;
     margin-bottom: 20px;
 }
 .hero-input input{
@@ -193,6 +197,7 @@ nav-menu.active{
     display: flex;
     align-items: center;
     gap: 10px;
+    color: gray;
 }
 .divider::before,
 .divider::after{
