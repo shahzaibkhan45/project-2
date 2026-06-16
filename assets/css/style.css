@@ -233,3 +233,44 @@ header nav{
     color: var(--first-color);
     text-decoration: none;
 }
+
+/* contact section */
+.contact-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10%;
+    margin:50px 100px;
+}
+.contact-c1{
+    color: white;
+    display: grid;
+    gap: 20px;
+    text-align: center;
+}
+.contact-c1 h2{
+    color: var(--first-color);
+    font-size: 1.5rem;
+}
+.contact-c2{
+    color: white;
+    display: grid;
+    justify-content: center;
+    align-items: start;
+    gap: 20px;
+    /* border: 2px solid var(--first-color); */
+    box-shadow: 0 0 20px var(--first-color);
+    padding: 20px 30px;
+    border-radius: 10px;
+    min-width: 350px;
+    min-height: 300px;
+}
+.contact-c2 input{
+   padding: 10px 0px;
+    outline: none;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    background-color: transparent;
+    color: white;
+    width: 100%;
+}
