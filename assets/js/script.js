@@ -13,7 +13,7 @@ if (searchBtn && searchInput) {
         const cards = document.querySelectorAll(".services-card");
 
         // If the current page has no service cards, open services page with search text.
-        if (!cards.length) {
+        if (cards.length === 0) {
             window.location.href = `./sevices.html?search=${encodeURIComponent(searchText)}`;
             return;
         }
