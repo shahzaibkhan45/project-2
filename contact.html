@@ -13,7 +13,7 @@
     <header id="header">
         <nav>
         <div class="nav-logo">
-            <h1><a href="#">PraRoz</a></h1>
+             <h1><a href="./index.html">PraRoz</a></h1>
         </div>
         <div class="nav-menu">
             <ul class="nav-list">
@@ -27,8 +27,8 @@
             <i class="ri-menu-line"></i>
         </div>
         <div class="nav-search">
-            <input type="text" placeholder="Search...">
-            <button>Search</button>
+            <input type="text" placeholder="Search..." id="searchInput">
+            <button id="searchBtn">Search</button>
         </div>
         </nav>
     </header>
@@ -40,13 +40,14 @@
             <h3>Address</h3>
             <p>Park Evenue,Shahr -e- faisl</p>
             <h3>Phone</h3>
-            <p>+92 321 1234567</p>
+            <p>+92 300 0000000</p>
             <h3>Email</h3>
             <p>info@example.com</p>
            </div>
            <div class="contact-c2">
             <h2>Contact Form</h2>
-            <form action="https://formsubmit.co/shahzaibkh455@gmail.com" method="POST">
+            <form action="/send" method="POST">
+
                 <input type="hidden" name="_next" value="http://http://127.0.0.1:5500//index.html">
                 
     <input type="text" name="fullname" id="fullname" placeholder="Full Name" required>
@@ -63,5 +64,6 @@
            </div>
         </section>
 </main>
+<script src="./assets/js/script.js"></script>
     </body>
 </html>
