@@ -1,8 +1,13 @@
+
+// search button
+
 const searchBtn = document.getElementById("searchBtn");
 const searchInput = document.getElementById("searchInput");
 
 if (searchBtn && searchInput) {
+
     const runSearch = function () {
+
         const searchText = searchInput.value.trim().toLowerCase();
 
         if (searchText === "") {
@@ -12,9 +17,9 @@ if (searchBtn && searchInput) {
 
         const cards = document.querySelectorAll(".services-card");
 
-        // If the current page has no service cards, open services page with search text.
         if (cards.length === 0) {
-            window.location.href = `./sevices.html?search=${encodeURIComponent(searchText)}`;
+            window.location.href =
+                `./sevices.html?search=${encodeURIComponent(searchText)}`;
             return;
         }
 
@@ -22,9 +27,14 @@ if (searchBtn && searchInput) {
         let firstMatch = null;
 
         cards.forEach(function (card) {
-            const title = card.querySelector("h3").textContent.toLowerCase();
+
+            const title = card
+                .querySelector("h3")
+                .textContent
+                .toLowerCase();
 
             if (title.includes(searchText)) {
+
                 card.style.border = "3px solid orange";
 
                 if (!firstMatch) {
@@ -32,36 +42,101 @@ if (searchBtn && searchInput) {
                 }
 
                 found = true;
+
             } else {
+
                 card.style.border = "";
+
             }
+
         });
 
         if (firstMatch) {
+
             firstMatch.scrollIntoView({
                 behavior: "smooth",
                 block: "center"
             });
+
         }
 
         if (!found) {
             alert("Not Found");
         }
+
     };
 
     searchBtn.addEventListener("click", runSearch);
 
     searchInput.addEventListener("keydown", function (event) {
+
         if (event.key === "Enter") {
             runSearch();
         }
+
     });
 
     const params = new URLSearchParams(window.location.search);
     const incomingSearch = params.get("search");
 
     if (incomingSearch) {
+
         searchInput.value = incomingSearch;
         runSearch();
+
     }
+
+}
+
+// sent to email
+
+emailjs.init("UJb-VdvnbrbEsOb59");
+
+const form = document.getElementById("contact-form");
+
+if (form) {
+
+    form.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+        const name =
+            document.getElementById("fullname").value;
+
+        const email =
+            document.getElementById("email").value;
+
+        const phone =
+            document.getElementById("phone").value;
+
+        const message =
+            document.getElementById("message").value;
+
+        emailjs.send(
+            "service_70n0uxe",
+            "template_j8ajxuf",
+            {
+                name: name,
+                email: email,
+                phone: phone,
+                message: message
+            }
+        )
+        .then(function () {
+
+            alert("Email Sent Successfully");
+
+            form.reset();
+
+        })
+        .catch(function (error) {
+
+            console.log(error);
+
+            alert("Failed To Send Email");
+
+        });
+
+    });
+
 }
