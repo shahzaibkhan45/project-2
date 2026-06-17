@@ -126,16 +126,24 @@ if (form) {
         )
         .then(function () {
 
-            alert("Email Sent Successfully");
+            toast.innerHTML = "Form submitted successfully ✅";
+      toast.classList.add("show");
+      setTimeout(() => {
+    toast.classList.remove("show");
+}, 5000);
 
             form.reset();
 
         })
         .catch(function (error) {
 
-            console.log(error);
+                    console.log(error);
 
-            alert("Failed To Send Email");
+            toast.innerHTML = "Failed To Send Email ❌";
+      toast.classList.add("show");
+      setTimeout(() => {
+    toast.classList.remove("show");
+}, 5000);
 
         });
 
