@@ -90,7 +90,9 @@ if (searchBtn && searchInput) {
 
 // sent to email
 
-emailjs.init("UJb-VdvnbrbEsOb59");
+if (typeof emailjs !== "undefined") {
+    emailjs.init("UJb-VdvnbrbEsOb59");
+}
 
 const form = document.getElementById("contact-form");
 
@@ -140,3 +142,34 @@ if (form) {
     });
 
 }
+
+
+
+
+let forms = document.querySelectorAll(".form");
+
+forms.forEach(function(form) {
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let inputs = form.querySelectorAll(".fields");
+    let isValid = true;
+
+    inputs.forEach(function(input) {
+      if(input.value.trim() === "") {
+        isValid = false;
+        input.style.border = "2px solid red";
+      } else {
+        input.style.border = "2px solid gray";
+      }
+    });
+
+    if(isValid) {
+      alert("Form submitted successfully ✅");
+      form.reset();
+    } else {
+      alert("Please fill all fields ❌");
+    }
+  });
+});
+

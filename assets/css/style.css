@@ -145,13 +145,21 @@ header nav{
 
 /* hero input section */
 .hero-input{
-    background-color: transparent 0.9;
+    background-color: rgba(0, 0, 0, 0.28);
     display:grid;
     gap: 5px;
     width: 450px;
     padding:20px 30px;
         border: 2px solid gray;
         border-radius: 10px;
+}
+.hero-input .form{
+    display: grid;
+    gap: 8px;
+}
+.hero-input .form label{
+    font-size: 0.95rem;
+    color: #d6d6d6;
 }
 .hero-input h2{
     font-size: 1.5rem;
@@ -160,24 +168,31 @@ header nav{
     color: gray;
     margin-bottom: 20px;
 }
-.hero-input input{
+.hero-input .fields{
     padding: 10px;
     outline:none;
     border: 2px solid gray;
     border-radius: 5px;
     background-color: transparent;
     color: white;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
+}
+.hero-input .fields:focus{
+    border-color: var(--first-color);
+    box-shadow: 0 0 0 2px rgba(207, 93, 6, 0.25);
 }
 .f-pass{
     text-align: right;
     color: var(--first-color);
+    margin-top: 2px;
 }
 .f-pass a{
     color: var(--first-color);
     text-decoration: none;
 }
 .sign-in-btn{
+    width: 100%;
     padding: 10px 20px;
     border: 2px solid var(--first-color);
     background-color: var(--first-color);
@@ -212,6 +227,10 @@ header nav{
     grid-template-columns: 1fr 1fr;
 }
 .social-link a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     color:white;
     text-decoration: none;
     border: 2px solid gray;
@@ -236,6 +255,7 @@ header nav{
 
 /* contact section */
 .contact-section{
+    height:70vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -452,11 +472,22 @@ grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 } */
 
 /* join us page */
+.join{
+       min-height: 100vh;
+       width: 100%;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       padding: 40px 60px;
+}
 .join-content{
     display: grid;
+    justify-content: center;
+    align-items: start;
     gap: 15px;
-    /* height: 60vh; */
-    margin:100px 50px;
+    /* width: min(950px, 100%); */
+    height: auto;
+    margin: 0 auto;
     background-color: black;
     padding: 50px 100px;
     border-radius: 100px 0px 100px 0px;
@@ -508,4 +539,66 @@ grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 }
 .resume-submit:hover{
     background-color: transparent;
+}
+
+/* signup page */
+.signup-container{
+    border: 2px solid gray;
+    display: grid;
+    /* justify-content: center;
+    align-items: center; */
+    gap: 20px;
+    width: 400px;
+    padding: 40px;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    margin: 50px auto;
+}
+.signup-container h2{
+    color: var(--first-color);
+    font-size: 1.5rem;
+    text-align: center;
+}
+.signup-container p{
+    text-align: center;
+    color: gray;
+}
+.signup-container form{
+ display: grid;
+    gap: 5px;
+}
+.signup-container form input{
+    padding: 10px 0px 10px 0px;
+    outline: none; 
+    border: none;
+    /* border-radius: 5px; */
+    background-color: transparent;
+    color: white;
+    width: 100%;
+    border-bottom: 2px solid var(--first-color);
+    margin: 10px 0px;
+}
+
+.signup-btn{
+    display: block;
+    margin: 0px auto;
+    text-align: center;
+    /* margin:0 auto; */
+    padding: 10px 20px;
+    border: 2px solid var(--first-color);
+    background-color: var(--first-color);
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+.signup-btn:hover{
+    background-color: transparent;
+    color: white;
+}
+.signup-container p a {
+    color: var(--first-color);
+    text-decoration: none;
+    font-weight: 600;
 }
