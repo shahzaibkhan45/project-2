@@ -450,3 +450,62 @@ grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     box-shadow:inset 0 0 20px var(--first-color);
     transition: 0.3s;
 } */
+
+/* join us page */
+.join-content{
+    display: grid;
+    gap: 15px;
+    /* height: 60vh; */
+    margin:100px 50px;
+    background-color: black;
+    padding: 50px 100px;
+    border-radius: 100px 0px 100px 0px;
+    color: white;
+}
+.join-content h2{
+    color: var(--first-color);
+    font-size: 1.5rem;
+}
+.join-content a{
+        width: fit-content;
+    padding: 10px 20px;
+    border: 2px solid var(--first-color);
+    background-color: var(--first-color);
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* margin-left: 30px; */
+    
+}
+.join-content input{
+   padding: 10px 5px;
+   
+}
+.join-content a span{
+    color: white;
+    text-decoration: underline;
+}
+.join-content a:hover{
+    background-color: transparent;
+}
+.resume-submit{
+   padding: 10px 20px;
+    border: 2px solid var(--first-color);
+    background-color: var(--first-color);
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+    text-decoration: none;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+}
+.resume-submit:hover{
+    background-color: transparent;
+}
