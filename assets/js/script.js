@@ -165,11 +165,29 @@ forms.forEach(function(form) {
     });
 
     if(isValid) {
-      alert("Form submitted successfully ✅");
+        toast.innerHTML = "Form submitted successfully ✅";
+      toast.classList.add("show");
+      setTimeout(() => {
+    toast.classList.remove("show");
+}, 5000);
+
       form.reset();
     } else {
-      alert("Please fill all fields ❌");
+        toast.innerHTML = "Please fill all fields ❌";
+        toast.classList.add("show");
+      setTimeout(() => {
+    toast.classList.remove("show");
+}, 5000);
     }
   });
 });
 
+const btn = document.getElementById("btn");
+const toast = document.getElementById("toast");
+
+btn.addEventListener("click", () => {
+
+    toast.classList.add("show");
+
+    
+});
