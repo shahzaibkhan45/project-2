@@ -334,3 +334,56 @@ loginForm.addEventListener("submit", function(e){
 
 });
 }
+// typing effect
+    let typed = new Typed("#typing" ,{
+        strings :["Web Design","Frontend Dev","Ui/Ux" , "React Apps", "your Career"],
+        typeSpeed : 100,
+        backSpeed : 50,
+        loop:true
+    })
+
+    // conting 
+    const studcounter = document.getElementById("studentCount");
+
+let count = 0;
+const target = 4800;
+
+const interval = setInterval(() => {
+
+    count += 50;
+
+    studcounter.textContent = count.toLocaleString();
+
+    if (count >= target) {
+        studcounter.textContent = target.toLocaleString();
+        clearInterval(interval);
+    }
+
+}, 20);
+// competion rate
+const completionCounter = document.getElementById("completionRate");
+let completionCount = 0;
+const completionTarget = 96;
+
+const completionInterval = setInterval(() => {
+
+    completionCount += 1;
+    completionCounter.textContent = completionCount;
+    if (completionCount >= completionTarget) {
+        completionCounter.textContent = completionTarget;
+        clearInterval(completionInterval);
+    }
+}, 20);
+
+// intership duration
+const internshipCounter = document.getElementById("internshipDuration");
+let internshipCount = 0;
+const internshipTarget = 12;
+const internshipInterval = setInterval(() => {
+    internshipCount += 0.5;
+    internshipCounter.textContent = internshipCount;
+    if (internshipCount >= internshipTarget) {
+        internshipCounter.textContent = internshipTarget;
+        clearInterval(internshipInterval);
+    }
+}, 20);
