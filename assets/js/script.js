@@ -342,6 +342,7 @@ loginForm.addEventListener("submit", function(e){
         loop:true
     })
 
+
     // conting 
     const studcounter = document.getElementById("studentCount");
 
