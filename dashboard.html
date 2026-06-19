@@ -3,9 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Page</title>
+    <title id="title-dash">Dashboard</title>
+     <!-- external font -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- css -->
+     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
+    <header id="header">
+        <nav>
+        <div class="nav-logo">
+            <h1><a href="./index.html">PraRoz</a></h1>
+        </div>
+        <div class="nav-menu">
+            <ul class="nav-list">
+                <li><a href="./index.html" class="active">Home</a></li>
+                <li><a href="./about.html">About</a></li>
+                <li><a href="./sevices.html">Services</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+        </div>
+       <div class="sidebar">
     
-</body>
-</html>
+    <div class="profile" >
+        <i id="profile" class="ri-user-3-fill profile-logo"></i>
+    </div>
+
+    <button id="logoutBtn" class="logoutBtn">Logout</button>
+
+</div>
+        </nav>
+    </header>
+    <main id="main">
+        <section class="dashboard">
+        <div id="toast">
+            </div>
+            <div class="dashboard-content">
+                <h1>Welcome <span class="userName"></span> to your Dashboard</h1>
+                <p>This is your dashboard where you can manage your account, view your progress, and access exclusive resources. Explore the features and make the most out of your experience with us.</p>
+                <p>
+Welcome, <strong class="userName"></strong>! We are delighted to have you here. <strong class="userName"></strong>, this dashboard has been designed especially for you so that you can easily access all the resources, opportunities, and updates available on our platform. As a valued member of our community, <strong class="userName"></strong>, you can explore our services, discover internship opportunities, and continue building your skills through practical learning experiences. We believe in your potential, <strong class="userName"></strong>, and we are committed to helping you achieve your goals and grow your career with confidence.
+</p>
+    
+               
+            </div>
+            </section>
+            </main>
+    <!-- EXTERNAL SCRIPT -->
+    <script src="./assets/js/script.js"></script>
+    </body>
+    </html>
+

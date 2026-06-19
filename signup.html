@@ -10,21 +10,33 @@
      <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
+    <div class="back">
+           <b><a href="./login.html"> <i class="ri-arrow-left-fill"></i>Back</a></b>
+        </div>
+    <section class="sign-section">
 <div id="toast">
     
 </div>
  <div class="signup-container">
     <h2>Sign Up</h2>
-    <form class="signup-form">
     <p>Sign up to create your account</p>
+    <form class="signup-form">
     <input type="text" placeholder="Full Name" id="name" class="fields-signup">
     <input type="email" placeholder="Email" id="email" class="fields-signup">
+    <div class="password-box">
     <input type="password"  placeholder="Password" id="pass" class="fields-signup">
+    <i class="ri-eye-line" id="togglePassword"></i>
+    </div>
+    
+    <div class="password-box">
     <input type="password"  placeholder="Confirm Password" id="cpass" class="fields-signup">
+    <i class="ri-eye-line" id="toggleCPassword"></i>
+    </div>
     <button type="submit" id="btn" class="signup-btn" href="./join.html">Sign Up</button>
     </form>
-    <p class="have-account">Already have an account? <a href="./index.html">Log in</a></p>
-    
+    <p class="have-account">Already have an account? <a href="./login.html">Log in</a></p>
+    </div>
+    </section>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>

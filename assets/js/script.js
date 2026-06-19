@@ -214,6 +214,9 @@ if (form) {
 // });
 
 
+
+let pass = document.getElementById("pass");
+    let cpass = document.getElementById("cpass");
 let signupForms = document.querySelector(".signup-form");
 if(signupForms) {
 signupForms.addEventListener("submit", function(e) {
@@ -223,22 +226,33 @@ signupForms.addEventListener("submit", function(e) {
     inputs.forEach(function(input) {
       if(input.value.trim() === "") {
         isValid = false;
-        input.style.borderBottom = "2px solid red";
+        input.style.border = "2px solid red";
       }else{
-        input.style.borderBottom = "2px solid var(--first-color)";
+        input.style.border = "2px solid gray";
       }
     });
-let pass = document.getElementById("pass");
-    let cpass = document.getElementById("cpass");
 
     if(pass.value.trim() === ""){
-    pass.style.borderBottom = "2px solid red";
+    pass.style.border = "2px solid red";
     isValid = false;
 }
 
 if(cpass.value.trim() === ""){
-    cpass.style.borderBottom = "2px solid red";
+    cpass.style.border = "2px solid red";
     isValid = false;
+}
+    const passwordPattern =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+if(pass.value.trim() !== "" && !passwordPattern.test(pass.value.trim())){
+    toast.innerHTML = "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character ❌";
+      toast.classList.add("show"); 
+      isValid = false;
+       setTimeout(() => {
+    toast.classList.remove("show");
+}, 3000);
+        pass.style.border = "2px solid red";
+        cpass.style.border = "2px solid red";
+            return;
 }
 
 if(pass.value.trim() !== "" && cpass.value.trim() !== "" && pass.value.trim() !== cpass.value.trim()){
@@ -248,10 +262,10 @@ if(pass.value.trim() !== "" && cpass.value.trim() !== "" && pass.value.trim() !=
         setTimeout(() => {
     toast.classList.remove("show");
 }, 3000);
-        pass.style.borderBottom = "2px solid red";
-        cpass.style.borderBottom = "2px solid red";
+        pass.style.border = "2px solid red";
+        cpass.style.border = "2px solid red";
         return;
-}
+    }
 
     if(isValid){
     const user = {
@@ -262,11 +276,12 @@ if(pass.value.trim() !== "" && cpass.value.trim() !== "" && pass.value.trim() !=
     };
     console.log(user);
     localStorage.setItem("user", JSON.stringify(user));
-    toast.innerHTML = "Account Created Successfully ✅";
-    toast.classList.add("show");
-     setTimeout(() => {
-    toast.classList.remove("show");
-}, 3000);
+    // toast.innerHTML = "Account Created Successfully ✅";
+    // toast.classList.add("show");
+    // setTimeout(() => {
+    //     toast.classList.remove("show");
+    // }, 3000);
+    window.location.href = "./login.html";
 
     signupForms.reset();
 }else {
@@ -279,24 +294,77 @@ if(pass.value.trim() !== "" && cpass.value.trim() !== "" && pass.value.trim() !=
 }
 });
 }
+// signup passward 
+const togglePass = document.getElementById("togglePassword");
+if(togglePass) {
+togglePass.addEventListener("click", function(){
+
+    if(pass.type === "password"){
+        pass.type = "text";
+        togglePass.classList.remove("ri-eye-line");
+        togglePass.classList.add("ri-eye-off-line");
+    }else{
+        pass.type = "password";
+        togglePass.classList.remove("ri-eye-off-line");
+        togglePass.classList.add("ri-eye-line");
+    }
+
+});
+}
+// dashborad user name
+let userName = document.querySelectorAll(".userName");
+let dashboardUser = document.getElementById("tittle-dash");
+if(dashboardUser) {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if(storedUser && storedUser.name){
+        dashboardUser.innerHTML = "Welcome, " + storedUser.name;
+    }
+}
+
+if(userName) {
+const storedUser = JSON.parse(localStorage.getItem("user"));
+if(storedUser && storedUser.name){
+    userName.forEach(function(nameElement) {
+        nameElement.textContent = storedUser.name;
+    });
+    // userName.textContent = storedUser.name;
+}
+}
+//signuo Confirm passward
+const toggleCPass = document.getElementById("toggleCPassword");
+if(toggleCPass) {
+toggleCPass.addEventListener("click", function(){
+
+    if(cpass.type === "password"){
+        cpass.type = "text";
+        toggleCPass.classList.remove("ri-eye-line");
+        toggleCPass.classList.add("ri-eye-off-line");
+    }else{
+        cpass.type = "password";
+        toggleCPass.classList.remove("ri-eye-off-line");
+        toggleCPass.classList.add("ri-eye-line");
+    }
+
+});
+}
 
 // login form
 
+let Lemail = document.getElementById("Lemail");
+let Lpass = document.getElementById("Lpass");
 const loginForm = document.querySelector(".form");
 if(loginForm) {
 loginForm.addEventListener("submit", function(e){
 
     e.preventDefault();
 
-    let Lemail = document.getElementById("Lemail");
-    let Lpass = document.getElementById("Lpass");
 
  if(Lemail.value.trim() === "" || Lpass.value.trim() === ""){
     if(Lemail.value.trim() === ""){
-        Lemail.style.borderBottom = "2px solid red";
+        Lemail.style.border = "2px solid red";
     }
     if(Lpass.value.trim() === ""){
-        Lpass.style.borderBottom = "2px solid red";
+        Lpass.style.border = "2px solid red";
     }
     toast.innerHTML = "Please fill all fields ❌";
     toast.classList.add("show");
@@ -318,7 +386,7 @@ loginForm.addEventListener("submit", function(e){
         storedUser.email === email &&
         storedUser.password === password
     ){
-        window.open("./login.html", "_blank");
+        window.location.href = "./dashboard.html";
     }
     else{
         toast.innerHTML = "Invalid email or password ❌";
@@ -327,24 +395,42 @@ loginForm.addEventListener("submit", function(e){
     toast.classList.remove("show");
 }
 , 3000);
-     Lemail.style.borderBottom = "2px solid red";
-     Lpass.style.borderBottom = "2px solid red";
+     Lemail.style.border = "2px solid red";
+     Lpass.style.border = "2px solid red";
     
     }
 
 });
 }
+let toggleLPass = document.getElementById("toggleLPassword");
+if(toggleLPass) {
+toggleLPass.addEventListener("click", function(){
+if(Lpass.type === "password"){
+    Lpass.type = "text";
+    toggleLPass.classList.remove("ri-eye-line");
+    toggleLPass.classList.add("ri-eye-off-line");
+}else{
+    Lpass.type = "password";
+    toggleLPass.classList.remove("ri-eye-off-line");
+    toggleLPass.classList.add("ri-eye-line");
+}
+});
+}
 // typing effect
+const typingElement = document.querySelector("#typing");
+if (typingElement) {
     let typed = new Typed("#typing" ,{
         strings :["Web Design","Frontend Dev","Ui/Ux" , "React Apps", "your Career"],
         typeSpeed : 100,
         backSpeed : 50,
         loop:true
     })
+}
 
 
     // conting 
     const studcounter = document.getElementById("studentCount");
+    if(studcounter) {
 
 let count = 0;
 const target = 4800;
@@ -361,8 +447,10 @@ const interval = setInterval(() => {
     }
 
 }, 20);
+    }
 // competion rate
 const completionCounter = document.getElementById("completionRate");
+if(completionCounter) {
 let completionCount = 0;
 const completionTarget = 96;
 
@@ -375,16 +463,39 @@ const completionInterval = setInterval(() => {
         clearInterval(completionInterval);
     }
 }, 20);
+}
 
 // intership duration
 const internshipCounter = document.getElementById("internshipDuration");
+if(internshipCounter) {
 let internshipCount = 0;
 const internshipTarget = 12;
 const internshipInterval = setInterval(() => {
-    internshipCount += 0.5;
+    internshipCount += 1;
     internshipCounter.textContent = internshipCount;
     if (internshipCount >= internshipTarget) {
         internshipCounter.textContent = internshipTarget;
         clearInterval(internshipInterval);
     }
-}, 20);
+}, 200);
+}
+
+// profile button
+let profile = document.getElementById("profile");
+let logoutbtn = document.getElementById("logoutBtn");
+
+if(profile && logoutbtn){
+
+    profile.addEventListener("click", function(){
+        logoutbtn.classList.toggle("show-profile");
+        console.log("Profile button clicked");
+    });
+
+    logoutbtn.addEventListener("click", function(){
+        localStorage.removeItem("user");
+        window.location.href = "./index.html";
+    });
+
+}
+
+

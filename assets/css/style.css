@@ -21,7 +21,7 @@ header nav{
     width: 100%;
     top: 0;
     left: 0; */
-    padding: 20px 10%;
+    padding: 20px 40px;
     background-color:black;
 }
 .nav-logo a{
@@ -83,15 +83,12 @@ header nav{
 
 /* home section */
 .hero{
-    margin: 50px 0;
+    margin-top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 80px;
-    color: white;
-    text-align: center;
-    width: 100%;
-    padding: 20px;
+    flex-direction: column;
+    gap: 30px;
 }
 
 .hero-content{
@@ -118,6 +115,7 @@ header nav{
     margin: 0 auto;
     text-align: justify;
     text-align-last: center;
+    color:white;
 }
 @keyframes float{
     0%{
@@ -190,16 +188,76 @@ header nav{
 }
 
 .imp-hero p{
-    border: 2px solid gray;
-    background-color: rgb(18, 16, 16);
+    /* border: 2px solid gray; */
+    background-color: rgb(16, 16, 35);
+    backdrop-filter: blur(8px);
     padding: 30px 40px;
-    border-radius: 10px;
+    border-radius: 20px;
+    width: 200px;
+    text-align: center;
+    color: white;
+    
 }
 
 .imp-hero span{
     color: gray;
 }
 
+/* hero row 1 */
+.hero-content-1{
+    display: grid;
+    /* gap: 10px; */
+    max-width: 750px;
+    width: 100%;
+}
+
+.hero-content-1 h2{
+    margin-top:70px;
+    font-size: 3.5rem;
+    font-family: 'Outfit', sans-serif;
+    color: var(--first-color);
+    text-align: center;
+    min-height: 90px;
+}
+.hero-content-1 p{
+    text-align: justify;
+    text-align-last: center;
+    font-size: 1.2rem;
+    color: gray;
+}
+
+.hero-content-1-cards{
+    text-align: center; 
+     margin: 60px 0px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+.card{
+   
+    background-color: rgb(16, 16, 35);
+    backdrop-filter: blur(8px);
+    padding: 30px 40px;
+    border-radius: 20px;
+    text-align: center;
+    width: 350px;
+    height: 300px;
+    color: white;
+}
+.card:hover{
+    box-shadow: 0 0 20px var(--first-color);
+    transition: 0.3s;
+}
+.card i{
+    font-size: 3rem;
+    color: var(--first-color);
+    text-align: center;
+    display: block;
+}
+.card h3{
+    font-size: 1.5rem;
+    margin: 20px 0px;
+}
 
 /* hero input section */
 .hero-input{
@@ -221,6 +279,7 @@ header nav{
 }
 .hero-input h2{
     font-size: 1.5rem;
+    color: var(--first-color);
 }
 .hero-input p {
     color: gray;
@@ -515,13 +574,24 @@ grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     background-color: black;
     padding: 40px 50px;
     border-radius: 10px;
-    box-shadow:inset 0 0 20px var(--first-color);
+    /* box-shadow:inset 0 0 20px var(--first-color); */
+    text-align: justify;
+}
+.services-card:hover{
+    box-shadow: 0 0 20px var(--first-color);
+    transition: 0.3s;
 }
 .services-card h3{
     color: var(--first-color);
     font-size: 1.2rem;
     /* margin-bottom: 10px; */
     text-align: center;
+}
+.services-card p{
+    color: gray;
+    text-align: justify;
+    margin-top: 10px;
+    text-align-last: center;
 }
 /* .services-card:hover{
     box-shadow:inset 0 0 20px var(--first-color);
@@ -619,49 +689,53 @@ grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 }
 
 /* signup page */
+.sign-section{
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 60px;
+}
 .signup-container{
-    border: 2px solid gray;
-    display: grid;
-    /* justify-content: center;
-    align-items: center; */
+    background-color: rgba(0, 0, 0, 0.28);
+    display:grid;
     gap: 20px;
-    width: 400px;
-    padding: 40px;
-    border-radius: 10px;
-    background-color: black;
-    color: white;
-    margin: 50px auto;
+    width: 450px;
+    padding:30px 40px;
+        border: 2px solid gray;
+        border-radius: 10px;
+        text-align: center;
+         margin: 0 auto;
+
 }
 .signup-container h2{
+    font-size: 2rem;
     color: var(--first-color);
-    font-size: 1.5rem;
-    text-align: center;
 }
 .signup-container p{
-    text-align: center;
     color: gray;
 }
-.signup-container form{
- display: grid;
-    gap: 5px;
+.signup-form{
+    display: grid;
+    gap: 20px;
 }
-.signup-container form input{
-    padding: 10px 0px 10px 0px;
-    outline: none; 
-    border: none;
-    /* border-radius: 5px; */
+.signup-form input{
+    padding: 10px;
+    outline:none;
+    border: 2px solid gray;
+    border-radius: 5px;
     background-color: transparent;
     color: white;
-    width: 100%;
-    border-bottom: 2px solid var(--first-color);
-    margin: 10px 0px;
-}
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
-.signup-btn{
-    display: block;
-    margin: 0px auto;
-    text-align: center;
-    /* margin:0 auto; */
+}
+.signup-form input:focus{
+    border-color: var(--first-color);
+    box-shadow: 0 0 0 2px rgba(207, 93, 6, 0.25);
+}
+.signup-form button{
+    width: 100%;
     padding: 10px 20px;
     border: 2px solid var(--first-color);
     background-color: var(--first-color);
@@ -669,20 +743,21 @@ grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     cursor: pointer;
     border-radius: 5px;
     transition: 0.3s;
+    text-decoration: none;
+    text-align: center;
 }
-.signup-btn:hover{
+.signup-form button:hover{
     background-color: transparent;
-    color: white;
+    color: var(--first-color);
 }
-.signup-container p a {
+.have-account a{
     color: var(--first-color);
     text-decoration: none;
-    font-weight: 600;
 }
 /* toast */
 #toast {
     position: fixed;
-    top: 15%;
+    top: 05%;
     left: 50%;
 
     transform: translate(-50%, -20px);
@@ -715,4 +790,98 @@ grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     background-color: var(--first-color);
     color: white;
     margin: 50px auto;
+}
+
+/* passward eye checker */
+.password-box{
+    position: relative;
+}
+
+.password-box input{
+    width: 100%;
+}
+
+.password-box i{
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: gray;
+}
+
+/* back button */
+
+.back a{
+    color: var(--first-color);
+    text-decoration: none;
+     background-color: black;
+     padding: 20px 20px;
+     border-radius: 20px;
+      font-size: 2rem;
+       position: absolute;
+    top:30px;
+    left:30px;
+}
+.back a:hover{
+box-shadow: 0 0 10px var(--first-color);
+}
+
+/* dashbord page */
+.dashboard{
+    min-height: 87vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 60px;
+}
+.dashboard-content{
+    margin: 50px 100px;
+     background-color: black;
+     padding: 60px 50px;
+     border-radius: 10px;
+      text-align: justify;
+}
+.dashboard-content h1{
+color: white;
+font-size: 3rem;
+text-align: center;
+}
+.userName{
+    color: var(--first-color);
+}
+.dashboard-content p{
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+}
+.sidebar{
+    position: relative;
+}
+
+.profile-logo{
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.logoutBtn{
+    /* display: none; */
+    position: absolute;
+    top: 40px;
+    right: 0;
+    padding: 10px 20px;
+    border: none;
+    background: var(--first-color);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.show-profile{
+    /* display: block; */
+    opacity: 1;
 }
