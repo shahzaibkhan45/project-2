@@ -1,4 +1,8 @@
-
+fetch("header.html")
+.then(response => response.text())
+.then(data => {
+    document.getElementById("header-container").innerHTML = data;
+});
 // search button
 
 const searchBtn = document.getElementById("searchBtn");
@@ -500,36 +504,48 @@ if(profile && logoutbtn){
 }
 
 
-const navHomeLinks = document.querySelectorAll("#navHome");
-
-navHomeLinks.forEach(function(link) {
+const navHomeLinks = document.getElementById("navHome");
 
     const isLoggedIn = localStorage.getItem("isLoggedIn");
 
     if (isLoggedIn === "true") {
-        link.textContent = "Dashboard";
-        link.href = "./dashboard.html";
-    } else {
-        link.textContent = "Home";
-        link.href = "./index.html";
-    }
-
-});
-
-const navSearch = document.getElementById("nav-search");
-const navProfile = document.getElementById("navProfile");
-
-const isLoggedIn = localStorage.getItem("isLoggedIn");
-
-if (navSearch && navProfile) {
-
-    if (isLoggedIn === "true") {
-        navProfile.classList.add("show-sidebar");
+        navHomeLinks.textContent = "Dashboard";
+        navHomeLinks.href = "./dashboard.html";
+        
 
     } else {
-
-         navSearch.classList.add("show-nav");
+        navHomeLinks.textContent = "Home";
+        navHomeLinks.href = "./index.html";
     }
+// const navAbout = document.querySelectorAll("#navAbout");
+// navAbout.forEach(function(link1) {
+//  const isLoggedIn = localStorage.getItem("isLoggedIn");
+//     if (isLoggedIn === "true") {
+//         link1.classList.add("show-about");
+//     } else {
+//         link1.classList.add("hide-about");
+//     }
+// });
 
-}
+// const navSearch = document.getElementById("nav-search");
+// const navProfile = document.getElementById("navProfile");
+
+// const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+// if (navSearch && navProfile) {
+
+//     if (isLoggedIn === "true") {
+
+//        if (navProfile) {
+//         navProfile.classList.add("show-sidebar");
+//     }
+
+//     } else {
+
+//          if (navSearch) {
+//         navSearch.classList.add("show-nav");
+//     }
+//     }
+
+// }
 
