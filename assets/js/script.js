@@ -386,6 +386,7 @@ loginForm.addEventListener("submit", function(e){
         storedUser.email === email &&
         storedUser.password === password
     ){
+         localStorage.setItem("isLoggedIn", "true");
         window.location.href = "./dashboard.html";
     }
     else{
@@ -492,10 +493,43 @@ if(profile && logoutbtn){
     });
 
     logoutbtn.addEventListener("click", function(){
-        localStorage.removeItem("user");
+         localStorage.removeItem("isLoggedIn");
         window.location.href = "./index.html";
     });
 
 }
 
+
+const navHomeLinks = document.querySelectorAll("#navHome");
+
+navHomeLinks.forEach(function(link) {
+
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    if (isLoggedIn === "true") {
+        link.textContent = "Dashboard";
+        link.href = "./dashboard.html";
+    } else {
+        link.textContent = "Home";
+        link.href = "./index.html";
+    }
+
+});
+
+const navSearch = document.getElementById("nav-search");
+const navProfile = document.getElementById("navProfile");
+
+const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+if (navSearch && navProfile) {
+
+    if (isLoggedIn === "true") {
+        navProfile.classList.add("show-sidebar");
+
+    } else {
+
+         navSearch.classList.add("show-nav");
+    }
+
+}
 
