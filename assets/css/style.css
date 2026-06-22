@@ -45,6 +45,9 @@ header nav{
 .nav-list li a:hover{
     color: var(--first-color);
 }
+.nav-list li a.active{
+    color: var(--first-color);
+}
 .nav-toggle{
     display: none;
     font-size: 24px;
@@ -912,11 +915,10 @@ text-align: center;
 
 .show-about{
     display: flex;
-     opacity: 1;
 }
 .hide-about{
     display: none;
-     opacity: 0;
+     /* opacity: 0; */
 }
 #header-container{
     min-height: 80px;

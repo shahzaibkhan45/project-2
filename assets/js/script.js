@@ -1,98 +1,17 @@
-fetch("header.html")
-.then(response => response.text())
-.then(data => {
-    document.getElementById("header-container").innerHTML = data;
-});
-// search button
-
-const searchBtn = document.getElementById("searchBtn");
-const searchInput = document.getElementById("searchInput");
-
-if (searchBtn && searchInput) {
-
-    const runSearch = function () {
-
-        const searchText = searchInput.value.trim().toLowerCase();
-
-        if (searchText === "") {
-            alert("Please enter something to search");
-            return;
-        }
-
-        const cards = document.querySelectorAll(".services-card");
-
-        if (cards.length === 0) {
-            window.location.href =
-                `./sevices.html?search=${encodeURIComponent(searchText)}`;
-            return;
-        }
-
-        let found = false;
-        let firstMatch = null;
-
-        cards.forEach(function (card) {
-
-            const title = card
-                .querySelector("h3")
-                .textContent
-                .toLowerCase();
-
-            if (title.includes(searchText)) {
-
-                card.style.border = "3px solid orange";
-
-                if (!firstMatch) {
-                    firstMatch = card;
-                }
-
-                found = true;
-
-            } else {
-
-                card.style.border = "";
-
-            }
-
-        });
-
-        if (firstMatch) {
-
-            firstMatch.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-
-        }
-
-        if (!found) {
-            alert("Not Found");
-        }
-
-    };
-
-    searchBtn.addEventListener("click", runSearch);
-
-    searchInput.addEventListener("keydown", function (event) {
-
-        if (event.key === "Enter") {
-            runSearch();
-        }
-
-    });
-
-    const params = new URLSearchParams(window.location.search);
-    const incomingSearch = params.get("search");
-
-    if (incomingSearch) {
-
-        searchInput.value = incomingSearch;
-        runSearch();
-
+async function loadHeader() {
+    const container = document.getElementById("header-container");
+    if (!container) {
+        return;
     }
+const response = await fetch("header.html");
+const data = await response.text();
+  container.innerHTML = data;
+};
+async function init(){
+    await loadHeader();
 
-}
 
-// sent to email
+    // sent to email
 const btn = document.getElementById("btn");
 const toast = document.getElementById("toast");
 
@@ -158,66 +77,7 @@ if (form) {
 }
 
 
-
-
-// let forms = document.querySelectorAll(".form");
-// forms.forEach(function(form) {
-//   form.addEventListener("submit", function(e) {
-//     e.preventDefault();
-
-//     let inputs = form.querySelectorAll(".fields");
-//     let isValid = true;
-//     inputs.forEach(function(input) {
-//       if(input.value.trim() === "") {
-//         isValid = false;
-//         input.style.borderBottom = "2px solid red";
-//       }else{
-//         input.style.borderBottom = "2px solid var(--first-color)";
-//       }
-//     });
-// let pass = document.getElementById("pass");
-//     let cpass = document.getElementById("cpass");
-// if(pass && cpass){
-// let passValue = pass.value.trim();
-// let cpassValue = cpass.value.trim();
-//     if(passValue !== cpassValue){
-//         pass.style.borderBottom = "2px solid red";
-//         cpass.style.borderBottom = "2px solid red";
-
-//               toast.innerHTML = "Passwords do not match ❌";
-//       toast.classList.add("show"); 
-//       isValid = false;
-
-//       setTimeout(() => {
-//     toast.classList.remove("show");
-// }, 5000);
-// return;
-//     }else{
-//         pass.style.borderBottom = "2px solid var(--first-color)";
-//         cpass.style.borderBottom = "2px solid var(--first-color)";
-        
-//     }
-//       };
-  
-//     (isValid) {
-//         toast.innerHTML = "Form submitted successfully ✅";
-//       toast.classList.add("show");
-//       setTimeout(() => {
-//     toast.classList.remove("show");
-// }, 5000);
-
-//       form.reset();
-//     } else {
-//         toast.innerHTML = "Please fill all fields ❌";
-//         toast.classList.add("show");
-//       setTimeout(() => {
-//     toast.classList.reifmove("show");
-// }, 5000);
-//     }
-//   });
-// });
-
-
+// sign up form
 
 let pass = document.getElementById("pass");
     let cpass = document.getElementById("cpass");
@@ -315,26 +175,7 @@ togglePass.addEventListener("click", function(){
 
 });
 }
-// dashborad user name
-let userName = document.querySelectorAll(".userName");
-let dashboardUser = document.getElementById("tittle-dash");
-if(dashboardUser) {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    if(storedUser && storedUser.name){
-        dashboardUser.innerHTML = "Welcome, " + storedUser.name;
-    }
-}
-
-if(userName) {
-const storedUser = JSON.parse(localStorage.getItem("user"));
-if(storedUser && storedUser.name){
-    userName.forEach(function(nameElement) {
-        nameElement.textContent = storedUser.name;
-    });
-    // userName.textContent = storedUser.name;
-}
-}
-//signuo Confirm passward
+//signup Confirm passward
 const toggleCPass = document.getElementById("toggleCPassword");
 if(toggleCPass) {
 toggleCPass.addEventListener("click", function(){
@@ -351,6 +192,7 @@ toggleCPass.addEventListener("click", function(){
 
 });
 }
+
 
 // login form
 
@@ -421,6 +263,216 @@ if(Lpass.type === "password"){
 }
 });
 }
+
+
+const navSearch = document.getElementById("nav-search");
+const navProfile = document.getElementById("navProfile");
+
+const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+if (navSearch && navProfile) {
+
+    if (isLoggedIn === "true") {
+
+       if (navProfile) {
+        navProfile.classList.add("show-sidebar");
+    }
+
+    } else {
+
+         if (navSearch) {
+        navSearch.classList.add("show-nav");
+    }
+    }
+
+}
+
+// dashborad user name
+let userName = document.querySelectorAll(".userName");
+let dashboardUser = document.getElementById("tittle-dash");
+// if(dashboardUser) {
+//     const storedUser = JSON.parse(localStorage.getItem("user"));
+//     if(storedUser && storedUser.name){
+//         dashboardUser.innerHTML = "Welcome, " + storedUser.name;
+//     }
+// }
+
+if(userName) {
+const storedUser = JSON.parse(localStorage.getItem("user"));
+const isLoggedIn = localStorage.getItem("isLoggedIn");
+if(isLoggedIn === "true") {
+if(storedUser && storedUser.name){
+    userName.forEach(function(nameElement) {
+        nameElement.textContent = storedUser.name;
+    });
+}else{
+    userName.forEach(function(nameElement) {
+        nameElement.textContent = "No User Logged In";
+    });
+}
+    // userName.textContent = storedUser.name;
+}
+}
+
+
+//home change with dashboard
+const navHomeLinks = document.getElementById("navHome");
+
+if (navHomeLinks) {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    if (isLoggedIn === "true") {
+        navHomeLinks.textContent = "Dashboard";
+        navHomeLinks.href = "./dashboard.html";
+        // navHomeLinks.classList.add("active");
+    } else {
+        navHomeLinks.textContent = "Home";
+        navHomeLinks.href = "./index.html";
+    }
+}
+
+const navAboutLinks = document.getElementById("navAbout");
+
+if (navAboutLinks) {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    if (isLoggedIn === "true") {
+        navAboutLinks.classList.add("show-about");
+    } else {
+        navAboutLinks.classList.add("hide-about");
+    }
+}
+
+
+// active link highlight
+     const currentPage = window.location.pathname.split("/").pop();
+
+    document.querySelectorAll(".nav-list li a").forEach((link) => {
+
+        let linkPage = link.getAttribute("href");
+
+        linkPage = linkPage.replace("./", "");
+
+        if (linkPage === currentPage) {
+            link.classList.add("active");
+        }
+    });
+
+
+    // profile button
+let profile = document.getElementById("profile");
+let logoutbtn = document.getElementById("logoutBtn");
+
+if(profile && logoutbtn){
+
+    profile.addEventListener("click", function(){
+        logoutbtn.classList.toggle("show-profile");
+        console.log("Profile button clicked");
+    });
+
+    logoutbtn.addEventListener("click", function(){
+         localStorage.removeItem("isLoggedIn");
+        window.location.href = "./index.html";
+    });
+
+}
+
+
+
+
+
+// search button
+
+const searchBtn = document.getElementById("searchBtn");
+const searchInput = document.getElementById("searchInput");
+
+if (searchBtn && searchInput) {
+
+    const runSearch = function () {
+
+        const searchText = searchInput.value.trim().toLowerCase();
+
+        if (searchText === "") {
+            alert("Please enter something to search");
+            return;
+        }
+
+        const cards = document.querySelectorAll(".services-card");
+
+        if (cards.length === 0) {
+            window.location.href =
+                `./sevices.html?search=${encodeURIComponent(searchText)}`;
+            return;
+        }
+
+        let found = false;
+        let firstMatch = null;
+
+        cards.forEach(function (card) {
+
+            const title = card
+                .querySelector("h3")
+                .textContent
+                .toLowerCase();
+
+            if (title.includes(searchText)) {
+
+                card.style.border = "3px solid orange";
+
+                if (!firstMatch) {
+                    firstMatch = card;
+                }
+
+                found = true;
+
+            } else {
+
+                card.style.border = "";
+
+            }
+
+        });
+
+        if (firstMatch) {
+
+            firstMatch.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        }
+
+        if (!found) {
+            alert("Not Found");
+        }
+
+    };
+
+    searchBtn.addEventListener("click", runSearch);
+
+    searchInput.addEventListener("keydown", function (event) {
+
+        if (event.key === "Enter") {
+            runSearch();
+        }
+
+    });
+
+    const params = new URLSearchParams(window.location.search);
+    const incomingSearch = params.get("search");
+
+    if (incomingSearch) {
+
+        searchInput.value = incomingSearch;
+        runSearch();
+
+    }
+
+}
+};
+init();
+
+
 // typing effect
 const typingElement = document.querySelector("#typing");
 if (typingElement) {
@@ -430,8 +482,7 @@ if (typingElement) {
         backSpeed : 50,
         loop:true
     })
-}
-
+};
 
     // conting 
     const studcounter = document.getElementById("studentCount");
@@ -458,7 +509,6 @@ const completionCounter = document.getElementById("completionRate");
 if(completionCounter) {
 let completionCount = 0;
 const completionTarget = 96;
-
 const completionInterval = setInterval(() => {
 
     completionCount += 1;
@@ -485,67 +535,4 @@ const internshipInterval = setInterval(() => {
 }, 200);
 }
 
-// profile button
-let profile = document.getElementById("profile");
-let logoutbtn = document.getElementById("logoutBtn");
-
-if(profile && logoutbtn){
-
-    profile.addEventListener("click", function(){
-        logoutbtn.classList.toggle("show-profile");
-        console.log("Profile button clicked");
-    });
-
-    logoutbtn.addEventListener("click", function(){
-         localStorage.removeItem("isLoggedIn");
-        window.location.href = "./index.html";
-    });
-
-}
-
-
-const navHomeLinks = document.getElementById("navHome");
-
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-
-    if (isLoggedIn === "true") {
-        navHomeLinks.textContent = "Dashboard";
-        navHomeLinks.href = "./dashboard.html";
-        
-
-    } else {
-        navHomeLinks.textContent = "Home";
-        navHomeLinks.href = "./index.html";
-    }
-// const navAbout = document.querySelectorAll("#navAbout");
-// navAbout.forEach(function(link1) {
-//  const isLoggedIn = localStorage.getItem("isLoggedIn");
-//     if (isLoggedIn === "true") {
-//         link1.classList.add("show-about");
-//     } else {
-//         link1.classList.add("hide-about");
-//     }
-// });
-
-// const navSearch = document.getElementById("nav-search");
-// const navProfile = document.getElementById("navProfile");
-
-// const isLoggedIn = localStorage.getItem("isLoggedIn");
-
-// if (navSearch && navProfile) {
-
-//     if (isLoggedIn === "true") {
-
-//        if (navProfile) {
-//         navProfile.classList.add("show-sidebar");
-//     }
-
-//     } else {
-
-//          if (navSearch) {
-//         navSearch.classList.add("show-nav");
-//     }
-//     }
-
-// }
 
