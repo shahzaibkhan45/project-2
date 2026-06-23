@@ -271,6 +271,10 @@ if(Lpass.type === "password"){
 
 // nav search and profile show
 const SearchProfile = document.getElementById("search-profile");
+const navSearch = document.getElementById("search-container");
+const navprofile = document.getElementById("nav-Profile");
+const currentPage = window.location.pathname.split("/").pop();
+
 const  joinUs = document.getElementById("join-us-btn");
 
 const isLoggedIn = localStorage.getItem("isLoggedIn");
@@ -280,9 +284,15 @@ if (SearchProfile && joinUs) {
 
     if (isLoggedIn === "true") {
 
-       if (SearchProfile) {
+       if (SearchProfile ) {
+        if(currentPage === "sevices.html"){
         SearchProfile.classList.add("show-search-profile");
+        }else{
+        SearchProfile.classList.add("show-search-profile");
+         navSearch.style.display = "none";
+        }
     }
+    
 
     } else {
 
@@ -323,6 +333,7 @@ if(storedUser && storedUser.name){
 
 //home change with dashboard
 const navHomeLinks = document.getElementById("navHome");
+const navlogo = document.getElementById("logo");
 
 if (navHomeLinks) {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
@@ -330,10 +341,12 @@ if (navHomeLinks) {
     if (isLoggedIn === "true") {
         navHomeLinks.textContent = "Dashboard";
         navHomeLinks.href = "./dashboard.html";
+        // navlogo.href = "./dashboard.html";
         // navHomeLinks.classList.add("active");
     } else {
         navHomeLinks.textContent = "Home";
         navHomeLinks.href = "./index.html";
+        // navlogo.href = "./index.html";
     }
 }
 
@@ -460,7 +473,14 @@ card.style.display = "block";
         }
 
         if (!found) {
-            alert("Not Found");
+            toast.hidden = false;
+            toast.innerHTML = "No matching services found ❌";
+            toast.classList.add("show");
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 3000);
+        
+            
         }
 
     };
@@ -536,7 +556,7 @@ searchInput.addEventListener("input", function () {
 }
 
 // active link highlight
-     const currentPage = window.location.pathname.split("/").pop();
+    //  const currentPage = window.location.pathname.split("/").pop();
 
     document.querySelectorAll(".nav-list li a").forEach((link) => {
 
