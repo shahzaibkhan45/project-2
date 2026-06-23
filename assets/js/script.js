@@ -10,7 +10,6 @@ const data = await response.text();
 async function init(){
     await loadHeader();
 
-
     // sent to email
 const btn = document.getElementById("btn");
 const toast = document.getElementById("toast");
@@ -271,23 +270,24 @@ if(Lpass.type === "password"){
 }
 
 // nav search and profile show
-const navSearch = document.getElementById("nav-search");
-const navProfile = document.getElementById("navProfile");
+const SearchProfile = document.getElementById("search-profile");
+const  joinUs = document.getElementById("join-us-btn");
 
 const isLoggedIn = localStorage.getItem("isLoggedIn");
+console.log("isLoggedIn:", isLoggedIn);
 
-if (navSearch && navProfile) {
+if (SearchProfile && joinUs) {
 
     if (isLoggedIn === "true") {
 
-       if (navProfile) {
-        navProfile.classList.add("show-sidebar");
+       if (SearchProfile) {
+        SearchProfile.classList.add("show-search-profile");
     }
 
     } else {
 
-         if (navSearch) {
-        navSearch.classList.add("show-nav");
+         if (joinUs) {
+        joinUs.classList.add("join-us-show");
     }
     }
 
@@ -337,6 +337,22 @@ if (navHomeLinks) {
     }
 }
 
+// function setActiveLink() {
+//     const currentPage = window.location.pathname.split("/").pop();
+
+//     document.querySelectorAll(".nav-list li a").forEach((link) => {
+
+//         let linkPage = link.getAttribute("href");
+//         linkPage = linkPage.replace("./", "");
+
+//         if (linkPage === currentPage) {
+//             link.classList.add("active");
+//         } else {
+//             link.classList.remove("active");
+//         }
+//     });
+// }
+
 const navAboutLinks = document.getElementById("navAbout");
 
 if (navAboutLinks) {
@@ -348,21 +364,6 @@ if (navAboutLinks) {
         navAboutLinks.classList.add("hide-about");
     }
 }
-
-
-// active link highlight
-     const currentPage = window.location.pathname.split("/").pop();
-
-    document.querySelectorAll(".nav-list li a").forEach((link) => {
-
-        let linkPage = link.getAttribute("href");
-
-        linkPage = linkPage.replace("./", "");
-
-        if (linkPage === currentPage) {
-            link.classList.add("active");
-        }
-    });
 
 
     // profile button
@@ -378,11 +379,12 @@ if(profile && logoutbtn){
 
     logoutbtn.addEventListener("click", function(){
          localStorage.removeItem("isLoggedIn");
-        // window.location.href = "./index.html";
-         window.location.replace("./");
+         window.location.href = "./index.html";
+    
     });
 
 }
+
 
 
 
@@ -403,6 +405,9 @@ if (searchBtn && searchInput) {
             toast.hidden = false;
             toast.innerHTML = "Please enter a search term ❌";
             toast.classList.add("show");
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 3000);
             return;
         }
 
@@ -433,9 +438,12 @@ card.style.display = "block";
                 }
 
                 found = true;
-
             } else {
                  card.style.display = "none";
+                 document.getElementById("services-h2").style.display = "none";
+                 document.querySelectorAll(".services-p").forEach(function(cards) {
+                    cards.style.display = "none";
+                 });
                 // card.style.border = "";
 
             }
@@ -516,6 +524,7 @@ searchInput.addEventListener("input", function () {
         item.addEventListener("click", function () {
             searchInput.value = service;
             suggestions.innerHTML = "";
+             runSearch();
         });
 
         suggestions.appendChild(item);
@@ -525,6 +534,22 @@ searchInput.addEventListener("input", function () {
 });
 
 }
+
+// active link highlight
+     const currentPage = window.location.pathname.split("/").pop();
+
+    document.querySelectorAll(".nav-list li a").forEach((link) => {
+
+        let linkPage = link.getAttribute("href");
+
+        linkPage = linkPage.replace("./", "");
+
+        if (linkPage === currentPage) {
+            link.classList.add("active");
+        }
+        // console.log("Active link:", linkPage);
+        console.log(currentPage);
+    });
 };
 init();
 
