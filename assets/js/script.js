@@ -50,7 +50,7 @@ if (form) {
             }
         )
         .then(function () {
-
+ toast.hidden = false;
             toast.innerHTML = "Form submitted successfully ✅";
       toast.classList.add("show");
       setTimeout(() => {
@@ -63,7 +63,7 @@ if (form) {
         .catch(function (error) {
 
                     console.log(error);
-
+ toast.hidden = false;
             toast.innerHTML = "Failed To Send Email ❌";
       toast.classList.add("show");
       setTimeout(() => {
@@ -108,6 +108,7 @@ if(cpass.value.trim() === ""){
     const passwordPattern =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 if(pass.value.trim() !== "" && !passwordPattern.test(pass.value.trim())){
+     toast.hidden = false;
     toast.innerHTML = "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character ❌";
       toast.classList.add("show"); 
       isValid = false;
@@ -120,6 +121,7 @@ if(pass.value.trim() !== "" && !passwordPattern.test(pass.value.trim())){
 }
 
 if(pass.value.trim() !== "" && cpass.value.trim() !== "" && pass.value.trim() !== cpass.value.trim()){
+     toast.hidden = false;
     toast.innerHTML = "Passwords do not match ❌";
       toast.classList.add("show"); 
       isValid = false;  
@@ -149,6 +151,7 @@ if(pass.value.trim() !== "" && cpass.value.trim() !== "" && pass.value.trim() !=
 
     signupForms.reset();
 }else {
+     toast.hidden = false;
         toast.innerHTML = "Please fill all fields ❌";
         toast.classList.add("show");
       setTimeout(() => {
@@ -212,6 +215,7 @@ loginForm.addEventListener("submit", function(e){
     if(Lpass.value.trim() === ""){
         Lpass.style.border = "2px solid red";
     }
+     toast.hidden = false;
     toast.innerHTML = "Please fill all fields ❌";
     toast.classList.add("show");
 
@@ -236,6 +240,7 @@ loginForm.addEventListener("submit", function(e){
         window.location.href = "./dashboard.html";
     }
     else{
+        toast.hidden = false;
         toast.innerHTML = "Invalid email or password ❌";
       toast.classList.add("show");  
         setTimeout(() => {
