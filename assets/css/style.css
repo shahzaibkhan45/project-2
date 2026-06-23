@@ -92,6 +92,11 @@ header nav{
 .nav-menu .active{
     color: var(--first-color);
 }
+.nav-search{
+    position: relative;
+    width: 300px;
+}
+
 
 /* home section */
 .hero{

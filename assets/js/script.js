@@ -367,12 +367,13 @@ if(profile && logoutbtn){
 
     profile.addEventListener("click", function(){
         logoutbtn.classList.toggle("show-profile");
-        console.log("Profile button clicked");
+        
     });
 
     logoutbtn.addEventListener("click", function(){
          localStorage.removeItem("isLoggedIn");
-        window.location.href = "./index.html";
+        // window.location.href = "./index.html";
+         window.location.replace("./");
     });
 
 }
