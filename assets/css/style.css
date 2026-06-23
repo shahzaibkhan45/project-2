@@ -57,7 +57,7 @@ header nav{
 
 .nav-search{
     display: flex;
-    align-items: center;
+    /* align-items: center; */
         /* opacity: 0;
         visibility: hidden; */
         display: none;
@@ -94,7 +94,7 @@ header nav{
 }
 .nav-search{
     position: relative;
-    width: 300px;
+    /* width: 300px; */
 }
 
 
@@ -390,7 +390,7 @@ header nav{
 
 /* contact section */
 .contact-section{
-    height:100vh;
+    height:80vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -589,11 +589,13 @@ gap: 20px;
 grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 }
 .services-card{
+    width: 400px;
     background-color: black;
     padding: 40px 50px;
     border-radius: 10px;
     /* box-shadow:inset 0 0 20px var(--first-color); */
     text-align: justify;
+    margin: 0 auto;
 }
 .services-card:hover{
     box-shadow: 0 0 20px var(--first-color);
@@ -927,4 +929,24 @@ text-align: center;
 }
 #header-container{
     min-height: 80px;
+}
+
+#suggestions{
+    position: absolute;
+    background: white;
+    width: 100%;
+    top:110%;
+    max-width: 250px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#suggestions div{
+    padding: 10px;
+    cursor: pointer;
+    color: black;
+}
+
+#suggestions div:hover{
+    background: #eee;
 }

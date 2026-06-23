@@ -254,6 +254,7 @@ loginForm.addEventListener("submit", function(e){
 
 });
 }
+//show password login form
 let toggleLPass = document.getElementById("toggleLPassword");
 if(toggleLPass) {
 toggleLPass.addEventListener("click", function(){
@@ -269,7 +270,7 @@ if(Lpass.type === "password"){
 });
 }
 
-
+// nav search and profile show
 const navSearch = document.getElementById("nav-search");
 const navProfile = document.getElementById("navProfile");
 
@@ -399,7 +400,9 @@ if (searchBtn && searchInput) {
         const searchText = searchInput.value.trim().toLowerCase();
 
         if (searchText === "") {
-            alert("Please enter something to search");
+            toast.hidden = false;
+            toast.innerHTML = "Please enter a search term ❌";
+            toast.classList.add("show");
             return;
         }
 
@@ -422,8 +425,8 @@ if (searchBtn && searchInput) {
                 .toLowerCase();
 
             if (title.includes(searchText)) {
-
-                card.style.border = "3px solid orange";
+card.style.display = "block";
+                // card.style.border = "3px solid orange";
 
                 if (!firstMatch) {
                     firstMatch = card;
@@ -432,8 +435,8 @@ if (searchBtn && searchInput) {
                 found = true;
 
             } else {
-
-                card.style.border = "";
+                 card.style.display = "none";
+                // card.style.border = "";
 
             }
 
@@ -474,6 +477,53 @@ if (searchBtn && searchInput) {
 
     }
 
+    
+    const services = [
+    "Web Development",
+    "Mobile App Development",
+    "Custom Software Development",
+    "UI/UX Design",
+    "E-Commerce Solutions",
+    "Frontend Development",
+    "Backend Development",
+    "API Integration",
+    "Database Management",
+    "Website Maintenance",
+    "Digital Consulting",
+    "Cloud Hosting Solutions"
+];
+// const searchInput = document.getElementById("searchInput");
+const suggestions = document.getElementById("suggestions");
+
+searchInput.addEventListener("input", function () {
+
+    const value = this.value.toLowerCase();
+
+    suggestions.innerHTML = "";
+
+    if (value === "") return;
+
+    const filtered = services.filter(function(service) {
+        return service.toLowerCase().includes(value);
+    });
+
+    filtered.forEach(function(service) {
+
+        const item = document.createElement("div");
+
+        item.textContent = service;
+
+        item.addEventListener("click", function () {
+            searchInput.value = service;
+            suggestions.innerHTML = "";
+        });
+
+        suggestions.appendChild(item);
+
+    });
+
+});
+
 }
 };
 init();
@@ -488,6 +538,8 @@ if (typingElement) {
         backSpeed : 50,
         loop:true
     })
+
+
 };
 
     // conting 
