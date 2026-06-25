@@ -54,6 +54,7 @@ if (form) {
       toast.classList.add("show");
       setTimeout(() => {
     toast.classList.remove("show");
+    toast.hidden = true;
 }, 5000);
 
             form.reset();
@@ -67,6 +68,7 @@ if (form) {
       toast.classList.add("show");
       setTimeout(() => {
     toast.classList.remove("show");
+    toast.hidden = true;
 }, 5000);
 
         });
@@ -113,6 +115,7 @@ if(pass.value.trim() !== "" && !passwordPattern.test(pass.value.trim())){
       isValid = false;
        setTimeout(() => {
     toast.classList.remove("show");
+    toast.hidden = true;
 }, 3000);
         pass.style.border = "2px solid red";
         cpass.style.border = "2px solid red";
@@ -126,6 +129,7 @@ if(pass.value.trim() !== "" && cpass.value.trim() !== "" && pass.value.trim() !=
       isValid = false;  
         setTimeout(() => {
     toast.classList.remove("show");
+    toast.hidden = true;
 }, 3000);
         pass.style.border = "2px solid red";
         cpass.style.border = "2px solid red";
@@ -155,6 +159,7 @@ if(pass.value.trim() !== "" && cpass.value.trim() !== "" && pass.value.trim() !=
         toast.classList.add("show");
       setTimeout(() => {
     toast.classList.remove("show");
+    toast.hidden = true;
 }, 3000);
     
 }
@@ -220,6 +225,7 @@ loginForm.addEventListener("submit", function(e){
 
     setTimeout(() => {
         toast.classList.remove("show");
+        toast.hidden = true;
     }, 3000);
 
     return;
@@ -244,6 +250,7 @@ loginForm.addEventListener("submit", function(e){
       toast.classList.add("show");  
         setTimeout(() => {
     toast.classList.remove("show");
+    toast.hidden = true;
 }
 , 3000);
      Lemail.style.border = "2px solid red";
@@ -420,6 +427,7 @@ if (searchBtn && searchInput) {
             toast.classList.add("show");
             setTimeout(() => {
                 toast.classList.remove("show");
+                toast.hidden = true;
             }, 3000);
             return;
         }
@@ -478,6 +486,7 @@ card.style.display = "block";
             toast.classList.add("show");
             setTimeout(() => {
                 toast.classList.remove("show");
+                toast.hidden = true;
             }, 3000);
         
             
@@ -569,6 +578,13 @@ searchInput.addEventListener("input", function () {
         }
         // console.log("Active link:", linkPage);
         console.log(currentPage);
+    });
+
+    // nav toggle
+    const navToggle = document.getElementById("nav-toggle");
+    const navMenu = document.querySelector(".nav-menu");
+    navToggle.addEventListener("click", function () {
+        navMenu.classList.toggle("show-menu");
     });
 };
 init();
