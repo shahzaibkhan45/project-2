@@ -17,13 +17,13 @@ body{
 @keyframes upToDown{
     from{
         opacity: 0;
-        /* transform: translateY(-20px); */
-         transform: rotateY(180deg);
+        transform: translateY(-20px);
+         /* transform: rotateY(180deg); */
     }
     to{
         opacity: 1;
-        /* transform: translateY(0); */
-        transform: rotateY(0deg);
+        transform: translateY(0);
+        /* transform: rotateY(0deg); */
     }
 }
 
@@ -56,6 +56,7 @@ header nav{
     text-decoration: none;
     font-size: 18px;
     transition: 0.3s;
+    text-align: center;
 }
 .nav-list li a:hover{
     color: var(--first-color);
@@ -98,6 +99,7 @@ header nav{
     background-color: transparent;
     color: white;
     margin: 0;
+    
 }
 
 .search-container button{
@@ -278,7 +280,7 @@ display: flex;
      margin: 10px auto;
     display: grid;
     gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     justify-content: center;
 }
 .card{
@@ -628,10 +630,12 @@ margin-top: 10px;
 .card-main{
 display: grid;
 gap: 20px;
-grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+/* grid-template-columns: repeat(3, 1fr); */
+grid-template-columns: repeat(auto-fit, minmax(300px, 380px));
+justify-content: center;
 }
 .services-card{
-    width: 400px;
+    width: 380px;
     background-color: black;
     padding: 40px 50px;
     border-radius: 10px;
@@ -897,7 +901,8 @@ box-shadow: 0 0 10px var(--first-color);
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px 60px;
+    /* padding: 40px 60px; */
+
 }
 .dashboard-content{
     margin: 50px 100px;
@@ -993,6 +998,8 @@ text-align: center;
     background: #eee;
 }
 
+/* deashboard  */
+
 
 /* responsive */
 /* mobile size */
@@ -1016,6 +1023,16 @@ height:100%;
 text-align: center;
 
 }
+.nav-list li{
+    text-align: center;
+    margin: 0 auto;
+}
+.nav-list li a{
+    text-align: center;
+}
+.nav-list li a:last-child{
+   text-align: center;
+}
 .nav-menu.show-menu{
     right: 0;
     opacity: 1;
@@ -1025,6 +1042,19 @@ text-align: center;
 #nav-toggle{
     display: flex;
 } 
+.search-profile{
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-search{
+    position: static;
+}
+
+.search-container input{
+    width: 120px;
+}
+
 /* contact section */
 .contact-section{
     flex-direction: column;
@@ -1032,6 +1062,9 @@ text-align: center;
     margin:50px 120px;
     justify-content: center;
     align-items: center;
+}
+.contact-c2{
+    max-width: 450px;
 }
 
 /* home sectiom */
@@ -1048,6 +1081,174 @@ text-align: center;
 }
 .hero-content p{
     font-size: 1rem;
+    /* width: 300px; */
+     /* letter-spacing: 0.7px; */
+     
+}
+.hero-content-1-cards{
+    grid-template-columns: 1fr;
+}
+.imp-hero{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .imp-hero p{
+        width: 45%;
+    }
+
+    .imp-hero p:last-child{
+        width: 45%;
+        margin: 0 auto;
+    }
+    .card{
+        width:350px;
+    }
+    /* services */
+.services{
+    margin:50px 30px;
+}
+.card-main{
+    /* width: 250px; */
+    /* grid-template-columns: 1fr; */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 380px));
+    justify-content: center;
+}
+.services-card{
+    width: 380px;
+}
+/* sign up page */
+.signup-container{
+    width: 350px;
+}
+.hero-input{
+    min-width: 350px;
+}
+
+/* about section */
+.about{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    height: auto;
+
+    margin: 40px 60px;
+    padding: 40px 40px;
+
+    gap: 30px;
+
+    border-radius: 30px;
+}
+
+.about-image{
+    display: flex;
+    justify-content: center;
+}
+
+.about-image img{
+    width: 220px;
+}
+
+.about-content{
+    justify-items: center;
+    text-align: center;
+}
+
+.about-content p{
+    text-align: center;
+}
+/* dashboard page */
+.dashboard{
+    min-height: auto;
+    display: flex;
+    justify-content: center;
+}
+}
+/* tablet size */
+@media (min-width:768px) and (max-width:1023px){
+      /* nav toggle */
+ .nav-list{
+    flex-direction: column;
+}
+.nav-menu{
+position: absolute;
+right: -100%;
+opacity: 0;
+visibility: hidden;
+z-index: 999;
+top: 80px;
+gap: 20px;
+background-color: black;
+display:block;
+padding: 20px 80px;
+height:100%;
+text-align: center;
+
+}
+.nav-list li{
+    text-align: center;
+    margin: 0 auto;
+}
+.nav-list li a{
+    text-align: center;
+    padding: 10px 0;
+}
+.nav-list li a:last-child{
+   text-align: center;
+}
+.nav-menu.show-menu{
+    right: 0;
+    opacity: 1;
+    visibility: visible;
+    transition: 0.3s;
+}
+#nav-toggle{
+    display: flex;
+} 
+.search-profile{
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-search{
+    position: static;
+}
+
+.search-container input{
+    width: 200px;
+}
+
+/* contact section */
+.contact-section{
+    flex-direction: column;
+    gap: 60px;
+    margin:50px 120px;
+    justify-content: center;
+    align-items: center;
+}
+.contact-c2{
+    max-width: 450px;
+}
+
+/* home sectiom */
+.hero{
+    margin: 40px 50px;
+}
+.hero-content h2{
+     font-size: 3rem;
+     /* min-height: 50px; */
+}
+.hero-content .starting-date{
+    padding: 5px 10px;
+    font-size: 1rem;
+}
+.hero-content p{
+    font-size: 1.5rem;
     /* width: 300px; */
      /* letter-spacing: 0.7px; */
      
@@ -1070,7 +1271,19 @@ text-align: center;
     .card{
         width:350px;
     }
-
+/* sevices page */
+.services{
+    margin:50px 40px;
+}
+.card-main{
+    /* width: 250px; */
+    /* grid-template-columns: repeat(2, 1fr); */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 380px));
+    justify-content: center;
+}
+.services-card{
+    width: auto;
+}
 /* sign up page */
 .signup-container{
     width: 350px;
@@ -1078,13 +1291,77 @@ text-align: center;
 .hero-input{
     min-width: 350px;
 }
+
+/* about section */
+.about{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    height: auto;
+
+    margin: 40px 60px;
+    padding: 40px 40px;
+
+    gap: 30px;
+
+    border-radius: 30px;
 }
-/* tablet size */
-@media (min-width:768px) and (max-width:1023px){
+
+.about-image{
+    display: flex;
+    justify-content: center;
+}
+
+.about-image img{
+    width: 220px;
+}
+
+.about-content{
+    justify-items: center;
+    text-align: center;
+}
+
+.about-content p{
+    text-align: center;
+}
+/* dashboard page */
+.dashboard{
+    min-height: auto;
+    display: flex;
+    justify-content: center;
+}
 
 }
 /* laptop / small desktop size */
 @media (min-width:1024px) and (max-width:1279px){
+    /* sevices page */
+.services{
+    margin:50px 40px;
+}
+.card-main{
+    /* width: 250px; */
+    /* grid-template-columns: repeat(2, 1fr); */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 380px));
+    justify-content: center;
+}
+.services-card{
+    width: auto;
+}
+.search-profile{
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-search{
+    position: absolute;
+}
+
+.search-container input{
+   width: clamp(100px, 10vw, 200px);
+}
 
 }
 /* large desktop size */

@@ -484,9 +484,11 @@ card.style.display = "block";
             toast.hidden = false;
             toast.innerHTML = "No matching services found ❌";
             toast.classList.add("show");
+
             setTimeout(() => {
                 toast.classList.remove("show");
                 toast.hidden = true;
+                // window.location.href = "./services.html";
             }, 3000);
         
             
@@ -527,7 +529,7 @@ card.style.display = "block";
     "Database Management",
     "Website Maintenance",
     "Digital Consulting",
-    "Cloud Hosting Solutions"
+    "Cloud & Hosting Solutions"
 ];
 // const searchInput = document.getElementById("searchInput");
 const suggestions = document.getElementById("suggestions");
