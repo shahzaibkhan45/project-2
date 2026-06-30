@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+
+<div id="toast" hidden></div>
+
+<div class="back">
+    <b><a href="./login.html"><i class="ri-arrow-left-fill"></i> Back</a></b>
+</div>
+
+<section class="forget-section">
+
+<div class="forget-container">
+
+<h2>Forgot Password</h2>
+
+<p>Enter your registered email address.</p>
+
+<form class="forget-form" id="forgotForm">
+
+<input
+type="email"
+id="forgotEmail"
+placeholder="Enter Email">
+
+<button type="submit" id="sendOtpBtn">
+Send OTP
+</button>
+
+<input
+type="text"
+id="otp"
+placeholder="Enter OTP"
+style="display:none;">
+
+<button
+type="button"
+id="verifyOtpBtn"
+style="display:none;">
+Verify OTP
+</button>
+
+<div id="resetPasswordBox" style="display:none;">
+
+<div class="password-box">
+
+<input
+type="password"
+id="newPassword"
+placeholder="New Password">
+
+<i class="ri-eye-line" id="toggleNewPass"></i>
+
+</div>
+
+<div class="password-box">
+
+<input
+type="password"
+id="confirmPassword"
+placeholder="Confirm Password">
+
+<i class="ri-eye-line" id="toggleConfirmPass"></i>
+
+</div>
+
+<button type="button" id="resetPasswordBtn">
+Reset Password
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script src="./assets/js/script.js"></script>
+
+</body>
+</html>

@@ -276,6 +276,303 @@ if(Lpass.type === "password"){
 });
 }
 
+// Forgot Password
+
+const forgotForm = document.getElementById("forgotForm");
+
+if (forgotForm) {
+
+    let generatedOTP = "";
+
+    const verifyBtn = document.getElementById("verifyOtpBtn");
+    const otpInput = document.getElementById("otp");
+    const resetBox = document.getElementById("resetPasswordBox");
+    const resetBtn = document.getElementById("resetPasswordBtn");
+
+    // Send OTP
+    forgotForm.addEventListener("submit", function (e) {
+
+        e.preventDefault();
+
+        const email = document.getElementById("forgotEmail").value.trim();
+
+        const storedUser =
+            JSON.parse(localStorage.getItem("user"));
+
+        if (email === "") {
+
+            toast.hidden = false;
+            toast.innerHTML = "Please enter email ❌";
+            toast.classList.add("show");
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+                toast.hidden = true;
+            },3000);
+
+            return;
+        }
+
+        if (!storedUser || storedUser.email !== email) {
+
+            toast.hidden = false;
+            toast.innerHTML = "Email not found ❌";
+            toast.classList.add("show");
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+                toast.hidden = true;
+            },3000);
+
+            return;
+        }
+
+        generatedOTP =
+            Math.floor(100000 + Math.random()*900000).toString();//0.56 * 900000 = 504000 + 100000 = 604000
+
+        emailjs.send(
+            "service_70n0uxe",
+            "template_7yucrfs",
+            {
+                email: email,
+                otp: generatedOTP
+            }
+        )
+
+        .then(function(){
+
+            toast.hidden = false;
+            toast.innerHTML = "OTP sent successfully ✅";
+            toast.classList.add("show");
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+                toast.hidden = true;
+            },3000);
+
+            otpInput.style.display = "block";
+            verifyBtn.style.display = "block";
+
+        })
+
+        .catch(function(error){
+
+            console.log(error);
+
+            toast.hidden = false;
+            toast.innerHTML = "Failed to send OTP ❌";
+            toast.classList.add("show");
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+                toast.hidden = true;
+            },3000);
+
+        });
+
+    });
+
+    // Verify OTP
+
+    verifyBtn.addEventListener("click",function(){
+
+        const userOTP = otpInput.value.trim();
+
+        if(userOTP === ""){
+
+            toast.hidden = false;
+            toast.innerHTML = "Enter OTP ❌";
+            toast.classList.add("show");
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+                toast.hidden = true;
+            },3000);
+
+            return;
+
+        }
+
+        if(userOTP === generatedOTP){
+
+            toast.hidden = false;
+            toast.innerHTML = "OTP Verified ✅";
+            toast.classList.add("show");
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+                toast.hidden = true;
+            },3000);
+
+            resetBox.style.display = "grid";
+
+        }
+
+        else{
+
+            toast.hidden = false;
+            toast.innerHTML = "Invalid OTP ❌";
+            toast.classList.add("show");
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+                toast.hidden = true;
+            },3000);
+
+        }
+
+    });
+
+    // Reset Password
+
+    resetBtn.addEventListener("click",function(){
+
+        const newPassword =
+            document.getElementById("newPassword").value.trim();
+
+        const confirmPassword =
+            document.getElementById("confirmPassword").value.trim();
+
+        if(newPassword === "" || confirmPassword === ""){
+
+            toast.hidden = false;
+            toast.innerHTML = "Fill all fields ❌";
+            toast.classList.add("show");
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+                toast.hidden = true;
+            },3000);
+
+            return;
+
+        }
+
+        const passwordPattern =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+
+        if(!passwordPattern.test(newPassword)){
+
+            toast.hidden = false;
+            toast.innerHTML = "Weak Password ❌";
+            toast.classList.add("show");
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+                toast.hidden = true;
+            },3000);
+
+            return;
+
+        }
+
+        if(newPassword !== confirmPassword){
+
+            toast.hidden = false;
+            toast.innerHTML = "Passwords do not match ❌";
+            toast.classList.add("show");
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+                toast.hidden = true;
+            },3000);
+
+            return;
+
+        }
+
+        const storedUser =
+            JSON.parse(localStorage.getItem("user"));
+
+        storedUser.password = newPassword;
+        storedUser.confirmPassword = confirmPassword;
+
+        localStorage.setItem(
+            "user",
+            JSON.stringify(storedUser)
+        );
+
+        toast.hidden = false;
+        toast.innerHTML = "Password changed successfully ✅";
+        toast.classList.add("show");
+
+        setTimeout(() => {
+
+            toast.classList.remove("show");
+            toast.hidden = true;
+
+            window.location.href = "./login.html";
+
+        },3000);
+
+    });
+
+    // Show New Password
+
+    const toggleNew =
+        document.getElementById("toggleNewPass");
+
+    toggleNew.addEventListener("click",function(){
+
+        const input =
+            document.getElementById("newPassword");
+
+        if(input.type==="password"){
+
+            input.type="text";
+            this.classList.replace(
+                "ri-eye-line",
+                "ri-eye-off-line"
+            );
+
+        }
+
+        else{
+
+            input.type="password";
+            this.classList.replace(
+                "ri-eye-off-line",
+                "ri-eye-line"
+            );
+
+        }
+
+    });
+
+    // Show Confirm Password
+
+    const toggleConfirm =
+        document.getElementById("toggleConfirmPass");
+
+    toggleConfirm.addEventListener("click",function(){
+
+        const input =
+            document.getElementById("confirmPassword");
+
+        if(input.type==="password"){
+
+            input.type="text";
+            this.classList.replace(
+                "ri-eye-line",
+                "ri-eye-off-line"
+            );
+
+        }
+
+        else{
+
+            input.type="password";
+            this.classList.replace(
+                "ri-eye-off-line",
+                "ri-eye-line"
+            );
+
+        }
+
+    });
+
+}
+
 // nav search and profile show
 const SearchProfile = document.getElementById("search-profile");
 const navSearch = document.getElementById("search-container");
@@ -479,17 +776,18 @@ card.style.display = "block";
             });
 
         }
-
+let servicesPage = document.querySelector(".services");
         if (!found) {
-            toast.hidden = false;
-            toast.innerHTML = "No matching services found ❌";
-            toast.classList.add("show");
+            // toast.hidden = false;
+            // toast.innerHTML = "No matching services found ❌";
+            // toast.classList.add("show");
 
-            setTimeout(() => {
-                toast.classList.remove("show");
-                toast.hidden = true;
-                // window.location.href = "./services.html";
-            }, 3000);
+            // setTimeout(() => {
+            //     toast.classList.remove("show");
+            //     toast.hidden = true;
+            //     // window.location.href = "./services.html";
+            // }, 3000);
+            servicesPage.innerHTML = "<h2>Not found ❌</h2>";
         
             
         }
@@ -585,9 +883,87 @@ searchInput.addEventListener("input", function () {
     // nav toggle
     const navToggle = document.getElementById("nav-toggle");
     const navMenu = document.querySelector(".nav-menu");
-    navToggle.addEventListener("click", function () {
-        navMenu.classList.toggle("show-menu");
+    const navClose = document.getElementById("nav-close");
+    // navToggle.addEventListener("click", function () {
+    //     navMenu.classList.add("show-menu");
+    // });
+    // navClose.addEventListener("click", function () {
+    //     navMenu.classList.remove("show-menu");
+    // });
+    
+//     const navIcon = navToggle.querySelector("i");
+
+// navToggle.addEventListener("click", function () {
+
+//     navMenu.classList.toggle("show-menu");
+
+//     if(navMenu.classList.contains("show-menu")){
+//         navIcon.classList.remove("ri-menu-line");
+//         navIcon.classList.add("ri-close-line");
+//     }else{
+//         navIcon.classList.remove("ri-close-line");
+//         navIcon.classList.add("ri-menu-line");
+//     }
+
+// });
+
+// const accordionButtons = document.querySelectorAll(".accordion-button");
+// if(accordionButtons) {
+    
+//     accordionButtons.forEach((button) => {
+//     let accordionArrows = button.querySelector(".down-arrow i");
+
+//     button.addEventListener("click", () => {
+//         accordionArrows.classList.toggle("ri-caret-down-fill");
+
+//         const content = button.nextElementSibling;
+
+//         content.style.display = "block";
+
+//     });
+
+// });
+// }
+
+const accordionButtons = document.querySelectorAll(".accordion-button");
+if (accordionButtons) {
+
+accordionButtons.forEach((button) => {
+
+    const arrow = button.querySelector(".down-arrow i");
+
+    button.addEventListener("click", () => {
+
+        const content = button.nextElementSibling;
+        const isOpen = content.style.display === "block";
+
+        // Sabhi accordions band karo
+        accordionButtons.forEach((btn) => {
+
+            const panel = btn.nextElementSibling;
+            const icon = btn.querySelector(".down-arrow i");
+
+            panel.style.display = "none";
+
+            icon.classList.remove("bi-caret-right-fill");
+            icon.classList.add("bi-caret-down-fill");
+
+        });
+
+        if (!isOpen) {
+
+            content.style.display = "block";
+
+            arrow.classList.remove("bi-caret-down-fill");
+            arrow.classList.add("bi-caret-right-fill");
+
+        }
+
     });
+
+});
+}
+
 };
 init();
 
