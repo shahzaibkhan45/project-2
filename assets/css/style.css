@@ -271,7 +271,7 @@ display: flex;
 .hero-content-1 p{
     text-align: justify;
     text-align-last: center;
-    font-size:;
+    font-size:1rem;
     color: gray;
 }
 
@@ -540,7 +540,6 @@ margin-top: 10px;
 }
 .about-content a:hover{
     background-color: transparent;
-   /
 }
 
 /* learn more page */
@@ -1014,7 +1013,7 @@ right: -100%;
 opacity: 0;
 visibility: hidden;
 z-index: 999;
-top: 80px;
+top: 0;
 gap: 20px;
 background-color: black;
 display:block;
@@ -1362,8 +1361,21 @@ text-align: center;
 .search-container input{
    width: clamp(100px, 10vw, 200px);
 }
+/* co ntact section */
+.contact-section{
+    gap: 50px;
+    /* margin:0px 30px; */
+    justify-content: center;
+    /* align-items: center; */
+}
+.contact-c1{
+    max-width: 400px;
+    align-items: start!important;
 
 }
+
+}
+
 /* large desktop size */
 @media (min-width:1280px) and (max-width:1439px){
 
@@ -1372,3 +1384,47 @@ text-align: center;
 @media (min-width:1440px){
 
 }
+
+/* Global responsive fixes */
+img{
+    max-width:100%;height:auto
+}
+.text,.hero-input,.contact-c2,.signup-container,.login-container,.join-content{width:100%;max-width:450px;min-width:unset}
+.login-container{
+    max-width:600px
+}
+.services-card,.card{
+    width:100%;max-width:380px
+}
+.hero-content h2{
+    font-size:clamp(2rem,5vw,4rem)
+}
+.contact-section{
+    max-width:1200px;margin:50px auto;padding:0 20px
+}
+.about{
+    width:min(1200px,95%);margin:50px auto;padding:40px
+}
+@media(max-width:480px){
+header nav{padding:15px}
+.hero{margin:20px 15px}
+.imp-hero{flex-direction:column}
+.imp-hero p{width:50%!important;
+    margin:0 auto;
+}
+.hero-content-1-cards{grid-template-columns:1fr}
+.services{margin:20px 15px}
+.about{padding:20px}
+.dashboard-content{margin:20px 15px;padding:20px}
+}
+@media(max-width:350px){
+    header nav{
+        /* flex-direction: column;
+        gap:10px;
+        text-align:start; */
+    }
+    .starting-date{
+
+    }
+}
+
